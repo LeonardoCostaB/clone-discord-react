@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -16,7 +17,11 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
+    "sass": "^1.54.0",
     "typescript": "^4.6.4",
     "vite": "^3.0.0"
-  }
+  },
+  "main": "index.js",
+  "author": "'Leonardo <leonardo_barrosocosta@hotmail.com>",
+  "license": "MIT"
 }
