@@ -17,7 +17,12 @@ const listConversations = {
 
     addNewServer: {
         logo: {
-            src: <Plus size={24} color="#ffffff" weight='fill' />,
+            src: <Plus 
+                    size={24} 
+                    color="#3BA55D" 
+                    weight='fill' 
+                    className={style['icon-green']}
+                />,
             alt: "Adicionar um servidor"
         },
         value: {
@@ -28,7 +33,12 @@ const listConversations = {
 
     explorerServerPublic: {
         logo: {
-            src: <Compass size={24} color="#ffffff" weight='fill' />,
+            src: <Compass 
+                    size={24} 
+                    color="#3BA55D" 
+                    weight='fill' 
+                    className={style['icon-green']}
+                />,
             alt: "Explore servidores públicos"
         },
         value: {
@@ -39,7 +49,12 @@ const listConversations = {
 
     downloadApps: {
         logo: {
-            src: <DownloadSimple size={24} color="#ffffff" weight='fill' />,
+            src: <DownloadSimple 
+                    size={24} 
+                    color="#3BA55D" 
+                    weight='fill' 
+                    className={style['icon-green']}
+                />,
             alt: "Explore servidores públicos"
         },
         value: {
