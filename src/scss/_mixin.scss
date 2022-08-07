@@ -1,12 +1,21 @@
-@mixin Display($val) {
+@mixin Display($val, $gap-val) {
     @if $val == Flex {
         display: flex;
         align-items: center;
+        gap: $gap-val;
+        
     }
 
     @else if $val == Center {
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: $gap-val;
+    }
+
+    @else if $val == Column {
+        display: flex;
+        flex-direction: column;
+        gap: $gap-val;
     }
 }

@@ -20,7 +20,7 @@
         max-height: 4.8rem;
         height: 4.8rem;
 
-        @include Display(Center);
+        @include Display(Center, 0);
 
         background-color: $black-700;
     
