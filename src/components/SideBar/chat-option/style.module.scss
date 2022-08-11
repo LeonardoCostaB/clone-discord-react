@@ -8,6 +8,8 @@
 
     background-color: $black-600;
 
+    @include Display(Column, 0);
+
     .container-seekConversation {
         @include Display(Center, 0);
 
@@ -99,33 +101,91 @@
         .friends-list {
             padding-top: .8rem;
 
+            overflow-x: auto;
+
             .friend {
                 width: 21.6rem;
                 height: 4.2rem;
 
                 padding: 0 .8rem;
 
+                border-radius: .4rem;
+
                 @include Display(Flex, 1.2rem);
                 
-                .photo-user {
-                    width: 3.2rem;
-                    height: 3.2rem;
-    
-                    clip-path: circle();   
-                }
-
                 .user-name {
+                    flex: 1;
+
                     color: $black-400;
                     line-height: 2rem;
                 }
+
+                .delete-chat {
+                    width: 1.6rem;
+
+                    opacity: 0;
+
+                    &:hover {
+                        filter: brightness(1.3);
+                    }
+                }
+
+                &:hover, &:active {
+                    background-color: $blackHover-100;
+                    color: $white-1000;
+
+                    .delete-chat {
+                        opacity: 1;
+                    }
+                }
             }
-            
         }
     }
 
     .user-config {
+        @include Display(Flex, 0);
+
         height: 5.2rem;
         width: 100%;
-        background-color: black;
+
+        padding: 0 8px;
+
+        background-color: $black-1000;
+
+        .user-identification {
+            flex: 1;
+
+            @include Display(Flex, .4rem);
+
+            .userName-container {
+                @include Display(Column, 0);
+
+                .name-identification {
+                    font-size: 1.4rem;
+                    line-height: 1.8rem;
+    
+                    color: $white-1000;
+                }
+
+                .id {
+                    font-size: 1.2rem;
+                    line-height: 1.3rem;
+
+                    color: #A9BBBE;
+                }
+            }
+
+        }
+
+        .app-config {
+            @include Display(Flex, 0);
+
+            .button-config {
+                width: 3.2rem;
+                max-width: 3.2rem;
+                height: 3.2rem;
+                max-height: 3.2rem;
+            }
+        }
     }
 }

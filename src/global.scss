@@ -27,3 +27,10 @@ a {
 li {
     list-style: none;
 }
+
+.photo-user {
+    width: 3.2rem;
+    height: 3.2rem;
+
+    clip-path: circle();   
+}
