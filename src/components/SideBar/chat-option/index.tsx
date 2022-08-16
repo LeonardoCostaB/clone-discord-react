@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import { Plus } from 'phosphor-react';
+import { ModalProvider } from '../../modal';
+
 import style from './style.module.scss';
 
 import friendsIcon from '../../../assets/svg/friends-icon.svg';
@@ -27,134 +30,183 @@ const configUser = {
 }
 
 export function ChatOption() {
+    const [ isOpen, setIsOpen ] = useState(false)
+
     return (
-        <div className={style['chat-option']}>
-            <div className={style['container-seekConversation']}>
-                <button
-                    type='button'
-                    className={style['seek-conversation']}
-                >
-                    Encontre ou comece uma conversa
-                </button>
-            </div>
-
-            <div className={style['container-buttonOptions']}>
-                <a 
-                    className={style['buttonOptions-friends']}
-                    href="#"
-                >
-                    <img src={friendsIcon} alt="Amigos" />
-                    
-                    Amigos
-                </a>
-
-                <a 
-                    className={style['buttonOptions-nitro']}
-                    href="#"
-                >
-                    <img src={nitroIcon} alt="Nitro" />
-
-                    Nitro
-                </a>
-            </div>
-
-            <div className={style['container-chatFriends']}>
-                <div className={style.title}>
-                    <h2>
-                        Mensagens diretas
-                    </h2>
-
-                    <button className={style.createMD} type='button'>
-                        <Plus
-                            className={style['createMD-icon']}
-                            color='#DCDDDE'
-                            weight='bold'
-                            cursor="pointer" 
-                            size={15}
-                        />
+        <>
+            <div className={style['chat-option']}>
+                <div className={style['container-seekConversation']}>
+                    <button
+                        type='button'
+                        className={style['seek-conversation']}
+                        onClick={() => setIsOpen(true)}
+                    >
+                        Encontre ou comece uma conversa
                     </button>
                 </div>
 
-                <ul className={style['friends-list']}>
-                    <li>
-                        <a href="" className={style.friend}>
-                            <img
-                                src={perfil01Img}
-                                alt="foto de gustavo"
-                                className={'photo-user'}
-                            />
+                <div className={style['container-buttonOptions']}>
+                    <a
+                        className={style['buttonOptions-friends']}
+                        href="#"
+                    >
+                        <img src={friendsIcon} alt="Amigos" />
+            
+                        Amigos
+                    </a>
 
-                            <span className={style['user-name']}>
-                                Gustavo
+                    <a
+                        className={style['buttonOptions-nitro']}
+                        href="#"
+                    >
+                        <img src={nitroIcon} alt="Nitro" />
+                        Nitro
+                    </a>
+                </div>
+
+                <div className={style['container-chatFriends']}>
+                    <div className={style.title}>
+                        <h2>
+                            Mensagens diretas
+                        </h2>
+
+                        <button className={style.createMD} type='button'>
+                            <Plus
+                                className={style['createMD-icon']}
+                                color='#DCDDDE'
+                                weight='bold'
+                                cursor="pointer"
+                                size={15}
+                            />
+                        </button>
+                    </div>
+
+                    <ul className={style['friends-list']}>
+                        <li>
+                            <a href="" className={style.friend}>
+                                <img
+                                    src={perfil01Img}
+                                    alt="foto de gustavo"
+                                    className={'photo-user'}
+                                />
+                                <span className={style['user-name']}>
+                                    Gustavo
+                                </span>
+                                <img
+                                    src={closeIcon}
+                                    alt="Clique aqui para excluir essa mensagem"
+                                    className={style['delete-chat']}
+                                />
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="" className={style.friend}>
+                                <img
+                                    src={perfil02Img}
+                                    alt="foto de Pedro"
+                                    className={'photo-user'}
+                                />
+                                <span className={style['user-name']}>
+                                    Pedro
+                                </span>
+                                <img
+                                    src={closeIcon}
+                                    alt="Clique aqui para excluir essa mensagem"
+                                    className={style['delete-chat']}
+                                />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div className={style['user-config']}>
+                    <div className={style['user-identification']}>
+                        <img
+                            src={perfil01Img}
+                            alt="Imagem de perfil Leonardo_costa"
+                            className={'photo-user'}
+                        />
+            
+                        <div className={style['userName-container']}>
+                            <span className={style['name-identification']}>
+                                leonardo_c...
                             </span>
-
-                            <img 
-                                src={closeIcon} 
-                                alt="Clique aqui para excluir essa mensagem" 
-                                className={style['delete-chat']}    
-                            />
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="" className={style.friend}>
-                            <img
-                                src={perfil02Img}
-                                alt="foto de Pedro"
-                                className={'photo-user'}
-                            />
-
-                            <span className={style['user-name']}>
-                                Pedro
+            
+                            <span className={style['id']}>
+                                #9773
                             </span>
+                        </div>
+                    </div>
 
-                            <img 
-                                src={closeIcon} 
-                                alt="Clique aqui para excluir essa mensagem" 
-                                className={style['delete-chat']}    
-                            />
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div className={style['user-config']}>
-                <div className={style['user-identification']}>
-                    <img 
-                        src={perfil01Img} 
-                        alt="Imagem de perfil Leonardo_costa"
-                        className={'photo-user'}
-                    />
-                    
-                    <div className={style['userName-container']}>
-                        <span className={style['name-identification']}>
-                            leonardo_c...
-                        </span>
-                        
-                        <span className={style['id']}>
-                            #9773
-                        </span>
+                    <div className={style['app-config']}>
+                        {
+                            Object.entries(configUser).map(([ key, value ]) => {
+                                return (
+                                    <button
+                                        key={key}
+                                        className={style["button-config"]}
+                                    >
+                                        <img
+                                            src={value.src}
+                                            alt={value.alt}
+                                        />
+                                    </button>
+                                );
+                            })
+                        }
                     </div>
                 </div>
-
-                <div className={style['app-config']}>
-                    {
-                        Object.entries(configUser).map(([ key, value ]) => {
-                            return (
-                                <button 
-                                    key={key}
-                                    className={style["button-config"]}
-                                >
-                                    <img 
-                                        src={value.src} 
-                                        alt={value.alt} 
-                                    />
-                                </button>
-                            );
-                        })
-                    }
-                </div>
             </div>
-        </div>
+
+            
+            <ModalProvider open={isOpen}>
+                <div className={style['modal-wrapper']}>
+                    <span className={style['title-modal']}>
+                        Buscar servidores, canais ou mensagens diretas
+                    </span>
+
+                    <div className={style['searchMyProfile']}>
+                        <input 
+                            type="text"
+                            placeholder="Aonde você gostaria de ir?"
+                            className={style["search-myConversation"]}
+                        />
+
+                        <div className="">
+                            <ul className="">
+                                <li className="">
+                                    canais anteriores
+
+                                    <ul className="">
+                                        <li className="">
+
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li className="">
+                                    menções
+
+                                    <ul className="">
+                                        <li className="">
+
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <div>
+                                <span>
+                                    <strong>Fica a dica:</strong>
+                                    Escreva <span>@</span> <span>#</span> <span>!</span> <span>*</span> no começo da caixa de pesquisa para limitar o resultado. <a href="#" target="_blank">Saiba mais</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ModalProvider>
+        </>
+
     );
 };
