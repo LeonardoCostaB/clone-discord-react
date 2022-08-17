@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { Plus } from 'phosphor-react';
-import { ModalProvider } from '../../modal';
+import { SeekConversation } from './search-seekConversation';
 
 import style from './style.module.scss';
 
@@ -30,20 +29,10 @@ const configUser = {
 }
 
 export function ChatOption() {
-    const [ isOpen, setIsOpen ] = useState(false)
-
     return (
         <>
             <div className={style['chat-option']}>
-                <div className={style['container-seekConversation']}>
-                    <button
-                        type='button'
-                        className={style['seek-conversation']}
-                        onClick={() => setIsOpen(true)}
-                    >
-                        Encontre ou comece uma conversa
-                    </button>
-                </div>
+                <SeekConversation />
 
                 <div className={style['container-buttonOptions']}>
                     <a
@@ -158,54 +147,6 @@ export function ChatOption() {
                     </div>
                 </div>
             </div>
-
-            
-            <ModalProvider open={isOpen}>
-                <div className={style['modal-wrapper']}>
-                    <span className={style['title-modal']}>
-                        Buscar servidores, canais ou mensagens diretas
-                    </span>
-
-                    <div className={style['searchMyProfile']}>
-                        <input 
-                            type="text"
-                            placeholder="Aonde você gostaria de ir?"
-                            className={style["search-myConversation"]}
-                        />
-
-                        <div className="">
-                            <ul className="">
-                                <li className="">
-                                    canais anteriores
-
-                                    <ul className="">
-                                        <li className="">
-
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li className="">
-                                    menções
-
-                                    <ul className="">
-                                        <li className="">
-
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-
-                            <div>
-                                <span>
-                                    <strong>Fica a dica:</strong>
-                                    Escreva <span>@</span> <span>#</span> <span>!</span> <span>*</span> no começo da caixa de pesquisa para limitar o resultado. <a href="#" target="_blank">Saiba mais</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ModalProvider>
         </>
 
     );
