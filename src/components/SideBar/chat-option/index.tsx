@@ -1,20 +1,19 @@
 import { Link, useLocation } from 'react-router-dom';
+import classNames from 'classnames';
 
-import { Plus } from 'phosphor-react';
+import { FriendList } from './FriendList';
 import { SeekConversation } from './search-seekConversation';
 
 import style from './style.module.scss';
 
 import friendsIcon from '../../../assets/svg/friends-icon.svg';
 import nitroIcon from '../../../assets/svg/nitro-icon.svg';
-import closeIcon from  '../../../assets/svg/close-icon.svg';
 import micIcon from  '../../../assets/svg/mic-icon.svg';
 import phoneIcon from  '../../../assets/svg/phone-icon.svg';
 import configIcon from  '../../../assets/svg/config-icon.svg';
 
 import perfil01Img from '../../../assets/imgs/foto-perfil.jpg';
-import perfil02Img from '../../../assets/imgs/teste-perfil.jpg';
-import classNames from 'classnames';
+
 
 const configUser = {
     mic: {
@@ -30,7 +29,6 @@ const configUser = {
         alt: "Clique aqui para acessar suas configurações"
     }
 }
-
 
 export function ChatOption() {
     const locationUrl = useLocation()
@@ -66,61 +64,7 @@ export function ChatOption() {
                     </Link>
                 </div>
 
-                <div className={style['container-chatFriends']}>
-                    <div className={style.title}>
-                        <h2>
-                            Mensagens diretas
-                        </h2>
-
-                        <button className={style.createMD} type='button'>
-                            <Plus
-                                className={style['createMD-icon']}
-                                color='#DCDDDE'
-                                weight='bold'
-                                cursor="pointer"
-                                size={15}
-                            />
-                        </button>
-                    </div>
-
-                    <ul className={style['friends-list']}>
-                        <li>
-                            <a href="" className={style.friend}>
-                                <img
-                                    src={perfil01Img}
-                                    alt="foto de gustavo"
-                                    className={'photo-user'}
-                                />
-                                <span className={style['user-name']}>
-                                    Gustavo
-                                </span>
-                                <img
-                                    src={closeIcon}
-                                    alt="Clique aqui para excluir essa mensagem"
-                                    className={style['delete-chat']}
-                                />
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="" className={style.friend}>
-                                <img
-                                    src={perfil02Img}
-                                    alt="foto de Pedro"
-                                    className={'photo-user'}
-                                />
-                                <span className={style['user-name']}>
-                                    Pedro
-                                </span>
-                                <img
-                                    src={closeIcon}
-                                    alt="Clique aqui para excluir essa mensagem"
-                                    className={style['delete-chat']}
-                                />
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <FriendList />
 
                 <div className={style['user-config']}>
                     <div className={style['user-identification']}>

@@ -34,9 +34,9 @@ const buttonsNav = {
 
 export function Friends() {
     return(
-        <div className={style.friends}>
+        <main className="main">
             <Header>
-                <span className={style["header-title"]}>
+                <span className="header-title">
                     <img src={friendsIcon} alt="icone de um usuário acenando" />
                     
                     <strong>
@@ -78,6 +78,6 @@ export function Friends() {
                     </p>
                 </div>
             </div>
-        </div>
+        </main>
     );
 };

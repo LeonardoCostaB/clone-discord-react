@@ -49,9 +49,18 @@ input {
     background-color: $black-800;
     
     .main {
-        flex: 1;
-
+        @include Display(Column, 0);
+        
         width: 100%;
         height: 100%;
-    }
+    
+        .header-title {
+            @include Display(Flex, .8rem);
+    
+            strong {
+                font-size: 1.6rem;
+                color: $white-1000;
+            }
+        }
+    }    
 }

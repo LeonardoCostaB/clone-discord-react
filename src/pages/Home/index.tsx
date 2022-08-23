@@ -8,9 +8,7 @@ export function Home() {
     <div className="container">
         <SideBar />
 
-        <main className="main">
-            <Friends/>
-        </main>
+        <Friends/>
     </div>
   );
 };
