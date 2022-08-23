@@ -1,0 +1,24 @@
+{
+    "users": [
+        {
+            "id": "132456",
+            "name": "Leonardo_costa",
+            "photo": "/src/assets/imgs/foto-perfil.jpg"
+        },
+        {
+            "id": "123654",
+            "name": "gustavo_henrique",
+            "photo": "/src/assets/imgs/teste-perfil.jpg"
+        },
+        {
+            "id": "321654",
+            "name": "lucas_santos",
+            "photo": "/src/assets/imgs/teste-perfil.jpg"
+        },
+        {
+            "id": "546321",
+            "name": "leandro_junior",
+            "photo": "/src/assets/imgs/teste-perfil.jpg"
+        }
+    ]
+}

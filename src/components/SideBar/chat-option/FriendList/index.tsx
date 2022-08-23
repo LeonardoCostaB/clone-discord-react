@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 
+import { users } from "../../../../../users.json";
+
 import style from './style.module.scss';
 
 import { Plus } from 'phosphor-react';
 import closeIcon from  '../../../../assets/svg/close-icon.svg';
-
-import perfil01Img from '../../../../assets/imgs/foto-perfil.jpg';
-import perfil02Img from '../../../../assets/imgs/teste-perfil.jpg';
 
 export function FriendList() {
     return (
@@ -28,47 +27,31 @@ export function FriendList() {
             </div>
 
             <ul className={style['friends-list']}>
-                <li>
-                    <Link 
-                        to="/channels/@me/121231545148415154131" 
-                        className={style.friend}
-                    >
-                        <img
-                            src={perfil01Img}
-                            alt="foto de gustavo"
-                            className={'photo-user'}
-                        />
-                        <span className={style['user-name']}>
-                            Gustavo
-                        </span>
-                        <img
-                            src={closeIcon}
-                            alt="Clique aqui para excluir essa mensagem"
-                            className={style['delete-chat']}
-                        />
-                    </Link>
-                </li>
+                {users.map(item => {
+                    return (
+                        <li key={item.id}>
+                            <Link 
+                                to={`/channels/@me/${item.id}`}
+                                className={style.friend}
+                            >
+                                <img
+                                    src={item.photo}
+                                    alt={`foto de ${item.name}`}
+                                    className={'photo-user'}
+                                />
+                                <span className={style['user-name']}>
+                                    { item.name }
+                                </span>
 
-                <li>
-                    <Link 
-                        to="/channels/@me/121231545148415154132"
-                        className={style.friend}
-                    >
-                        <img
-                            src={perfil02Img}
-                            alt="foto de Pedro"
-                            className={'photo-user'}
-                        />
-                        <span className={style['user-name']}>
-                            Pedro
-                        </span>
-                        <img
-                            src={closeIcon}
-                            alt="Clique aqui para excluir essa mensagem"
-                            className={style['delete-chat']}
-                        />
-                    </Link>
-                </li>
+                                <img
+                                    src={closeIcon}
+                                    alt="Clique aqui para excluir essa mensagem"
+                                    className={style['delete-chat']}
+                                />
+                            </Link>
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );
