@@ -5,10 +5,12 @@ import style from './style.module.scss';
 
 export function Home() {
   return (
-    <div className={style.home}>
+    <div className="container">
         <SideBar />
 
-        <Friends/>
+        <main className="main">
+            <Friends/>
+        </main>
     </div>
   );
 };

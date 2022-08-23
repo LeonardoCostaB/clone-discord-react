@@ -1,3 +1,5 @@
+import { Link, useLocation } from 'react-router-dom';
+
 import { Plus } from 'phosphor-react';
 import { SeekConversation } from './search-seekConversation';
 
@@ -12,6 +14,7 @@ import configIcon from  '../../../assets/svg/config-icon.svg';
 
 import perfil01Img from '../../../assets/imgs/foto-perfil.jpg';
 import perfil02Img from '../../../assets/imgs/teste-perfil.jpg';
+import classNames from 'classnames';
 
 const configUser = {
     mic: {
@@ -28,29 +31,39 @@ const configUser = {
     }
 }
 
+
 export function ChatOption() {
+    const locationUrl = useLocation()
+
+    const pathNameFriend = locationUrl.pathname == "/channels/@me";
+    const pathNameStore = locationUrl.pathname == "/store";
+    
     return (
         <>
             <div className={style['chat-option']}>
                 <SeekConversation />
 
                 <div className={style['container-buttonOptions']}>
-                    <a
-                        className={style['buttonOptions-friends']}
-                        href="#"
+                    <Link
+                        className={classNames(style['buttonOptions-friends'], {
+                            [style.active]: pathNameFriend
+                        }) }
+                        to="/channels/@me"
                     >
                         <img src={friendsIcon} alt="Amigos" />
             
                         Amigos
-                    </a>
+                    </Link>
 
-                    <a
-                        className={style['buttonOptions-nitro']}
-                        href="#"
+                    <Link
+                        className={classNames(style['buttonOptions-nitro'], {
+                            [style.active]: pathNameStore
+                        })}
+                        to="/store"
                     >
                         <img src={nitroIcon} alt="Nitro" />
                         Nitro
-                    </a>
+                    </Link>
                 </div>
 
                 <div className={style['container-chatFriends']}>

@@ -11,7 +11,7 @@
     @include Display(Column, 0);
 
     .container-buttonOptions {
-        @include Display(Column, 0);
+        @include Display(Column, .2rem);
 
         padding: .8rem 1rem;
 
@@ -31,13 +31,23 @@
 
             border-radius: .4rem;
 
-            &:hover, &:active {
+            &:hover {
                 background-color: $blackHover-100;
-                color: $white-1000;
+                color: $gray-100;
 
+            }
+            
+            &:active {
+                color: $white-1000;
+                
                 img {
-                    filter: brightness(20);
+                    filter: brightness(15);
                 }
+            }
+
+            &.active {
+                background-color: $blackHover-100;
+                color: $gray-100;
             }
         }
     }
