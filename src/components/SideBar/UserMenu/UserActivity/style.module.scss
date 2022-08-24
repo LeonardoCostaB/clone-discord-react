@@ -1,0 +1,45 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixin';
+
+.container-buttonOptions {
+    @include Display(Column, .2rem);
+
+    padding: .8rem 1rem;
+
+    .buttonOptions-friends, .buttonOptions-nitro {
+        width: 21.6rem;
+        height: 4.2rem;
+
+        padding: 0 .8rem;
+
+        @include Display(Center, 1.2rem);
+        justify-content: flex-start;
+
+        font-size: 1.6rem;
+        font-weight: 500;
+        line-height: 2rem;
+
+        color: $black-400;
+
+        border-radius: .4rem;
+
+        &:hover {
+            background-color: $blackHover-100;
+            color: $gray-100;
+
+        }
+        
+        &:active {
+            color: $white-1000;
+            
+            img {
+                filter: brightness(15);
+            }
+        }
+
+        &.active {
+            background-color: $blackHover-100;
+            color: $gray-100;
+        }
+    }
+}

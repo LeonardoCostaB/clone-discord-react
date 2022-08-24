@@ -1,0 +1,51 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/mixin";
+
+.user-config {
+    @include Display(Flex, 0);
+
+    height: 5.2rem;
+    width: 100%;
+
+    padding: 0 8px;
+
+    background-color: $black-1000;
+
+    .user-identification {
+        flex: 1;
+
+        @include Display(Flex, .4rem);
+
+        .userName-container {
+            @include Display(Column, 0);
+
+            .name-identification {
+                font-size: 1.4rem;
+                font-weight: 600;
+                line-height: 1.8rem;
+
+                color: $white-1000;
+            }
+
+            .id {
+                font-size: 1.2rem;
+                font-weight: 400;
+                line-height: 1.3rem;
+
+                color: #A9BBBE;
+            }
+        }
+
+    }
+
+    .app-config {
+        @include Display(Flex, 0);
+
+        .button-config {
+            width: 3.2rem;
+            max-width: 3.2rem;
+            height: 3.2rem;
+            max-height: 3.2rem;
+        }
+    }
+}
