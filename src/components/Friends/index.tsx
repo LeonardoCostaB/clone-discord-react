@@ -1,38 +1,53 @@
+import { useState } from 'react';
+import classNames from 'classnames';
+
 import { Header } from '../Header';
+import { WumpusMsg } from './WumpusMsg';
+import { ActiveFriendList } from './ActiveFriendList';
 
 import style from './style.module.scss';
 
 import wumpus from "../../assets/svg/wumpus.svg";
+import wumpusPending from "../../assets/svg/wumpus-pending.svg";
+import wumpusBlocked from "../../assets/svg/wumpus-blocked.svg";
+import wumpusAdd from "../../assets/svg/wumpus-add.svg";
 import friendsIcon from "../../assets/svg/friends-icon.svg";
 
 const buttonsNav = {
     available: {
         name: "Disponível",
-        class: "navigation-button"
+        class: "navigation-button",
+        link: "available"
     },
 
     all: {
         name: "Todos",
-        class: "navigation-button"
+        class: "navigation-button",
+        link: "all"
     },
 
     pending: {
         name: "Pendente",
-        class: "navigation-button"
+        class: "navigation-button",
+        link: "pending"
     },
 
     blocked: {
         name: "Bloqueado",
-        class: "navigation-button"
+        class: "navigation-button",
+        link: "blocked"
     },
 
     addFriend: {
         name: "Adicionar amigo",
-        class: "add-friends"
+        class: "add-friends",
+        link: "addFriend"
     }
 }
 
 export function Friends() {
+    const [ menuLinkValue, setMenuLinkValue ] = useState<string>("available")
+
     return(
         <main className="main">
             <Header>
@@ -49,7 +64,16 @@ export function Friends() {
                 <nav>
                     <ul className={style["navigation-list"]}>
                         { Object.entries(buttonsNav).map(([ key, value ]) => {
-                            return <li key={key} className={style[`${value.class}`]}>
+                            const validateValueLink = value.link == menuLinkValue
+
+                            return <li 
+                                key={key} 
+                                className={classNames(style["navigation-button"], {
+                                    [style.sessionActive]: validateValueLink,
+                                    [style[value.class]]: value.class === "add-friends"
+                                })}
+                                onClick={() => setMenuLinkValue(value.link)}
+                            >
                                 <button type='button'>
                                     { value.name }
                                 </button>     
@@ -58,26 +82,62 @@ export function Friends() {
                     </ul>
                 </nav>
             </Header>
-            
-            <div className={style["friends-container"]}>
-                <div className={style.wumpus}>
-                    <img 
-                        src={wumpus}
-                        alt="" 
+
+            { menuLinkValue == "available" && (
+                <div className={style["friends-container"]}>
+                    <WumpusMsg
+                        img={wumpus}
+                        msg="Ninguém por perto para brincar com Wumpus"
                     />
 
-                    <span>Ninguém por perto para brincar com Wumpus.</span>
+                    <ActiveFriendList />
+                </div>
+            )}
+
+            { menuLinkValue == "all" && (
+                <div className={style["friends-container"]}>
+                    <WumpusMsg
+                        img={wumpus}
+                        msg="Ninguém por perto para brincar com Wumpus"
+                    />
+
+                    <ActiveFriendList />
                 </div>
 
-                <div className={style["active-friend"]}>
-                    <h5 className={style["title-not-friend"]}>Ativo agora</h5>
+            )}
 
-                    <p className={style["not-friend"]}>
-                        <strong>Por enquanto está quieto...</strong>
-                        Quando um(a) amigo(a) começa uma atividade, como jogar um jogo ou bater papo por voz, mostraremos aqui!
-                    </p>
+            { menuLinkValue == "pending" && (
+                <div className={style["friends-container"]}>
+                    <WumpusMsg
+                        img={wumpusPending}
+                        msg="Não há pedidos de amizade pendentes. Fique com o Wumpus enquanto isso."
+                    />
+
+                    <ActiveFriendList />
                 </div>
-            </div>
+            )}
+
+            { menuLinkValue == "blocked" && (
+                <div className={style["friends-container"]}>
+                    <WumpusMsg
+                        img={wumpusBlocked}
+                        msg="Você não pode desbloquear o Wumpus."
+                    />
+
+                    <ActiveFriendList />
+                </div>
+            )}
+
+            { menuLinkValue == "addFriend" && (
+                <div className={style["friends-container"]}>
+                    <WumpusMsg
+                        img={wumpusAdd}
+                        msg="Ninguém por perto para brincar com Wumpus"
+                    />
+
+                    <ActiveFriendList />
+                </div>
+            )}
         </main>
     );
 };
