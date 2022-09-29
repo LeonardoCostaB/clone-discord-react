@@ -1,22 +1,36 @@
 import express from "express";
+import { ApolloServer } from "apollo-server-express";
 
-import router from "./router";
+import typeDefs from "./graphql/TypeDefs";
+import resolvers from "./graphql/Resolvers";
 
 class Server {
    private app = express();
+   private server = new ApolloServer({
+      typeDefs,
+      resolvers
+   })
 
    constructor() {
       this.middlewares();
-      this.routes();
+      this.apolloServer();
       this.port();
+   };
+
+   async apolloServer() {
+      await this.server.start();
+
+      this.server.applyMiddleware({
+         app: this.app,
+         // cors: {
+         //    origin: "http:localhost:3000"
+         // },
+         bodyParserConfig: true
+      })
    };
 
    middlewares() {
       this.app.use(express.json());
-   };
-
-   routes() {
-      this.app.use(router)
    };
 
    port() {
@@ -26,4 +40,4 @@ class Server {
    };
 };
 
-new Server()
+new Server();
